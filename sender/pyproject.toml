@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling>=1.32,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wechat-sender-mcp"
+version = "0.2.0"
+description = "Isolated, guarded WeChat sending MCP with an independently verified native backend"
+requires-python = ">=3.11"
+license = "GPL-3.0-only"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+dependencies = ["mcp==2.3.0", "frida==17.24.3"]
+
+[project.scripts]
+wechat-sender-mcp = "wechat_sender.server:main"
+wechat-sender-control = "wechat_sender.supervisor:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/wechat_sender"]

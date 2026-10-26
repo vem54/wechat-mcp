@@ -1,0 +1,20 @@
+name: Bug report
+description: Report a problem using diagnostic codes and synthetic data only.
+body:
+  - type: markdown
+    attributes:
+      value: 'Do not attach keys, chat databases, private profiles, logs or personal messages. Security vulnerabilities belong in a private advisory.'
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Component version, macOS version/architecture, WeChat version/build.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: What happened?
+      description: Expected behavior, actual behavior, diagnostic code and synthetic reproduction steps.
+    validations:
+      required: true

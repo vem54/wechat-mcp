@@ -1,0 +1,52 @@
+name: Tests
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  macos:
+    runs-on: macos-14
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+      - name: Install build tools
+        run: brew install uv openssl@3
+      - name: Check public tree
+        run: python3 scripts/check_public_tree.py
+      - name: Install reader and pinned SQLCipher
+        working-directory: reader
+        run: |
+          uv sync --locked
+          uv run python scripts/build_sqlcipher.py --openssl-prefix "$(brew --prefix openssl@3)"
+      - name: Reader tests and packaging
+        working-directory: reader
+        run: |
+          uv run pytest -q
+          uv build
+      - name: Sender tests and packaging
+        working-directory: sender
+        run: |
+          uv sync --locked --python 3.14
+          uv run pytest -q
+          uv build
+          node tests/native_pipeline_sender_checks.cjs
+          node tests/native_prepared_sender_checks.cjs
+          node tests/native_diagnostic_probe_checks.cjs
+      - name: Native ownership sanitizer harness
+        working-directory: sender
+        run: |
+          mkdir -p .build
+          clang++ -std=c++17 -pthread -O1 -g -fsanitize=address,undefined tests/native_pipeline_lifecycle.cpp -o .build/lifecycle-asan
+          .build/lifecycle-asan

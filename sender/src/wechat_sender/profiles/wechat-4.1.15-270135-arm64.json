@@ -1,0 +1,634 @@
+{
+  "wechat_version": "4.1.15",
+  "bundle_version": "270135",
+  "arm64_uuid": "0c2f01c0-c197-3286-901d-70e1d007a1c0",
+  "arm64_sha256": "6a5bd0cbb39ad3092c15e9debda2db4969eedf1b58caad244d88033a996833a7",
+  "text_code_sha256": "7b93667d03d062671f8929e0a0c71870d4a9ed090f1ede41f1fb0a19ca8f2ffd",
+  "runtime_verified": false,
+  "offsets": {
+    "taskCtor": "0x5daa3b0",
+    "taskDtor": "0x46364ec",
+    "startTask": "0x5973938",
+    "req2buf": "0x597d26c",
+    "buf2resp": "0x597d478",
+    "onTaskEnd": "0x5971eac",
+    "autoBufferWrite": "0x5ded20c",
+    "stringAssign": "0x713f808",
+    "wrapperTaskCtorExplicitId": "0x5daa21c",
+    "wrapperTaskCopyCtor": "0x5daa3c8",
+    "wrapperAutoBufferCtor": "0x5ded178",
+    "wrapperAutoBufferDtor": "0x5ded188",
+    "wrapperAutoBufferAllocWrite": "0x5ded378",
+    "wrapperAutoBufferPtr": "0x56300b4",
+    "wrapperEnvelopeCtor": "0x5563108",
+    "wrapperEnvelopeDtor": "0x5564928",
+    "wrapperSerializeToString": "0x5ab3f60",
+    "wrapperStringAssignBytes": "0x713f814",
+    "wrapperAutoBufferAppend": "0x5ded508",
+    "wrapperAppSessionGetter": "0x4669774",
+    "wrapperPrivateReq2Buf": "0x5cc4468",
+    "wrapperPrivateBuf2Resp": "0x5cc74c4",
+    "wrapperResponseEnvelopeCtor": "0x5ce428c",
+    "wrapperResponseEnvelopeDtor": "0x5ce63ec",
+    "wrapperAppPrepareTask": "0x4634710",
+    "wrapperSpecialAuthPredicate": "0x46351f0",
+    "wrapperDynamicAuthPredicate": "0x4671ac0",
+    "wrapperAppOnTaskEnd": "0x4635b9c",
+    "wrapperEnvelopeIdentityGetter": "0x4670584"
+  },
+  "expected_bytes": {
+    "taskCtor": "c81b02d008212e91290080520101e9b8",
+    "taskDtor": "f657bda9f44f01a9fd7b02a9fd830091",
+    "startTask": "ff4307d1fc6f1aa9f44f1ba9fd7b1ca9",
+    "req2buf": "ff8306d1fc6f14a9fa6715a9f85f16a9",
+    "buf2resp": "fc6fbaa9fa6701a9f85f02a9f65703a9",
+    "onTaskEnd": "ff0306d1fc6f12a9fa6713a9f85f14a9",
+    "autoBufferWrite": "f85fbca9f65701a9f44f02a9fd7b03a9",
+    "stringAssign": "b04f01f0103642f900021fd6b04f01f0",
+    "wrapperTaskCtorExplicitId": "f85fbca9f65701a9f44f02a9fd7b03a9",
+    "wrapperTaskCopyCtor": "f657bda9f44f01a9fd7b02a9fd830091",
+    "wrapperAutoBufferCtor": "00e4006f000000ad011000f9c0035fd6",
+    "wrapperAutoBufferDtor": "f44fbea9fd7b01a9fd430091f30300aa",
+    "wrapperAutoBufferAllocWrite": "f657bda9f44f01a9fd7b02a9fd830091",
+    "wrapperAutoBufferPtr": "080040f90001018bc0035fd6f657bda9",
+    "wrapperEnvelopeCtor": "484d02b0086133911f2000f9087c00a9",
+    "wrapperEnvelopeDtor": "f44fbea9fd7b01a9fd430091f30300aa",
+    "wrapperSerializeToString": "285cc0398800f8373f0000393f5c0039",
+    "wrapperStringAssignBytes": "b04f01f0103a42f900021fd6b04f01f0",
+    "wrapperAutoBufferAppend": "ffc300d1f44f01a9fd7b02a9fd830091",
+    "wrapperAppSessionGetter": "a8ef0290009d47f9c0035fd6ffc300d1",
+    "wrapperPrivateReq2Buf": "fc6fbaa9fa6701a9f85f02a9f65703a9",
+    "wrapperPrivateBuf2Resp": "fc6fbaa9fa6701a9f85f02a9f65703a9",
+    "wrapperResponseEnvelopeCtor": "1f1400f90842029008412b91091302f0",
+    "wrapperResponseEnvelopeDtor": "f44fbea9fd7b01a9fd430091f30300aa",
+    "wrapperAppPrepareTask": "fa67bba9f85f01a9f65702a9f44f03a9",
+    "wrapperSpecialAuthPredicate": "ff4301d1f44f03a9fd7b04a9fd030191",
+    "wrapperDynamicAuthPredicate": "ff8301d1f65703a9f44f04a9fd7b05a9",
+    "wrapperAppOnTaskEnd": "fc6fbaa9fa6701a9f85f02a9f65703a9",
+    "wrapperEnvelopeIdentityGetter": "ff4301d1f65702a9f44f03a9fd7b04a9"
+  },
+  "evidence": {
+    "taskCtor": "Native Task default constructor; atomically allocates task ID then branches to explicit-ID ctor0x5daa21c; initialized object0x218 bytes.",
+    "taskDtor": "Task destructor; calls AutoBuffer destructors at+0x1f0,+0x1c8 and destroys strings/vectors/maps; called after native MMStartTask by app.",
+    "startTask": "MMStartTask(Task*) resolves the default manager, deep-copies the native Task, then posts work under a queue mutex. Static current-build call chain0x5973938→0x597eda0→0x59b73b0→0x5d5d3bc→0x5dfb04c; exercised in isolated live trials.",
+    "req2buf": "MMReq2Buf; forwards normal branch to callbackvtable+0x50. x1taskID,x2usercontext,x3userid,x4nativeAutoBufferout,x5extend,x6error,w7channel; stackhost,ushortseq,Task.",
+    "buf2resp": "MMBuf2Resp exact string/function, forwards ordinary callback vtable+0x58. Native manager has12args, including Task atstack+0x10 and extraInfo atstack+0x18. Derived from direct disassembly plus Tencent public Mars signatures.",
+    "onTaskEnd": "OnTaskEnd bridge in mmstn_callback_bridge.cc; x0..x7 forwarded to0x5dab0fc; x6 profile pointer, x7 native response AutoBuffer, not Task. Exact task ID and user context were correlated in the isolated v2 trial.",
+    "autoBufferWrite": "Native AutoBuffer::Write(this,off_t*position,constvoid*data,size_tlen), void. Validates position, grows buffer, updates Length and memcpy. Does not advance position.",
+    "stringAssign": "libc++ std::string::assign(char const*) imported stub, used by native Task constructor.",
+    "wrapperTaskCtorExplicitId": "Task ctor(this,uint32id)",
+    "wrapperTaskCopyCtor": "Task copy ctor(this,constTask*source), deep copies std strings/maps/vectors.",
+    "wrapperAutoBufferCtor": "AutoBuffer ctor(this,size_t mallocUnit), zeroes data,pos,length,capacity and writesunit+0x20.",
+    "wrapperAutoBufferDtor": "AutoBuffer destructor(this), free owned data then zero fields.",
+    "wrapperAutoBufferAllocWrite": "AutoBuffer::AllocWrite(this,size_tlen,boolchangeLength), grow and optionally change length.",
+    "wrapperAutoBufferPtr": "AutoBuffer pointer accessor(this,offset), observed in serialization path; inspect before use.",
+    "wrapperEnvelopeCtor": "Request envelope native constructor, object size0x48; RTTI name obfuscated _3ee049af.",
+    "wrapperEnvelopeDtor": "Request envelope native non-deleting destructor, observed after SerializeToString.",
+    "wrapperSerializeToString": "Protobuf MessageLite SerializeToString(this,std::string*), returns true after clearing output and serializing.",
+    "wrapperStringAssignBytes": "libc++ std::string::assign(const char*,size_t), suitable binary bytes including NUL.",
+    "wrapperAutoBufferAppend": "AutoBuffer::Write(this,const void*,size_t), writes at Position, then advances Position by size.",
+    "wrapperAppSessionGetter": "Native singleton accessor, pointer return. App calls session vtable+0x20 for envelope uint64 field1. The isolated v2 diagnostic confirmed envelope identity equals the current account getter without exporting the identity.",
+    "wrapperPrivateReq2Buf": "account_core.cc MMReq2Buf; parses Task+0x1c8 envelope and applies native account framing. Selected by Task+0x1c0 nonzero.",
+    "wrapperPrivateBuf2Resp": "account_core.cc MMBuf2Resp; unpacks native response and writes serialized response envelope into Task+0x1f0.",
+    "wrapperResponseEnvelopeCtor": "Response envelope constructor size0x30; fields1:uint64,2:bytes,3:bytes,4:int32,5:int32.",
+    "wrapperResponseEnvelopeDtor": "Response envelope non-deleting destructor called after response serialization.",
+    "wrapperAppPrepareTask": "App request-to-native-Task preparation entry; constructs Task, serializes message and request envelope, starts Task, inserts owned app message into app pending map. NOT proposed as directly callable without app object ABI/lifetime.",
+    "wrapperSpecialAuthPredicate": "Static special-auth command set excludes textcmd522; set502,503,252,654,763,989,7415,997,987,22312.",
+    "wrapperDynamicAuthPredicate": "Dynamic account auth predicate for a command influences envelope fields9,11 and Task+0x40. Passive natural-text observations returned false for522; isolated v2 used fields1,2,3,4 only. Recheck the predicate before any operation; do not assume it remains false across sessions.",
+    "wrapperAppOnTaskEnd": "App completion callback; x7 is the native response envelope AutoBuffer. It removes the pending app message and invokes response parser vtable+0x18. Isolated trials filtered only exact owned task ID plus unique user context; normal traffic was forwarded. Bypassing this path also omits normal outgoing-history reconciliation.",
+    "wrapperEnvelopeIdentityGetter": "Session vtable+0x20 in vtable0x9e92400 acquires a native shared account reference, calls account vtable+0x10, then releases the reference. Runtime pointer inspection identified target0x4553f44; static leaf is ldr x0,[x0,#0x40];ret. Isolated v2 envelope/account equality was true. No identity value is recorded here."
+  },
+  "task_size": 536,
+  "auto_buffer_size": 40,
+  "task_fields": {
+    "id": 0,
+    "cmdid": 4,
+    "channel_select": 16,
+    "cgi": 24,
+    "need_authed": 49,
+    "user_context": 88,
+    "longlink_name": 104,
+    "cgi_context_value": 96,
+    "prepared_flag": 448,
+    "prepared_request_buffer": 456,
+    "prepared_response_buffer": 496
+  },
+  "auto_buffer_fields": {
+    "data": 0,
+    "position": 8,
+    "length": 16,
+    "capacity": 24,
+    "malloc_unit": 32
+  },
+  "notes": [
+    "EXPERIMENTAL EXACT-BUILD RESEARCH PROFILE. Native target code was exercised in isolated live tests. Packaged enablement gates remain false; observed server acceptance is not recipient delivery verification.",
+    "The rejected upstream strategy mutates std::map roots and relies on unstable register assumptions. Do not use those old req2bufEnter/Exit/blr hooks or captured shallow Task snapshots.",
+    "Use native Task construction, deep-copy queue dispatch and destruction. Native Mars AutoBuffer differs from the app wrapper0x4659f18.",
+    "The app prepares a request envelope and sets Task+0x1c0=1. Preserve native Req2Buf/Buf2Resp account framing. The isolated v2 File Helper trial exercised this path and received an explicit successful, correlated per-item server response.",
+    "Current request field5 is uint32. The initial trial encoded35bits and did not verify receipt. The v2 trial used uint32 and independently observed response field4 matching that client ID.",
+    "V2 observed exactly one matching start/end, zero native error type/code, explicit global ret0, one response item with explicit ret0, File Helper recipient match, client-ID match, timestamp match, and nonzero field8 server message ID. These facts establish correlated server acceptance only.",
+    "Filter only owned task ID AND unique user context at app completion, preserving all other traffic. Script code and retained operation tokens are pinned until app exit; live unloading is unsupported.",
+    "runtime_verified, sending_permitted and send_framing_verified are conservative packaged release gates, not claims that no runtime testing occurred. They remain false until the complete sender behavior is validated and explicitly enabled.",
+    "V3 transport-only test was confirmed on the phone but absent on Mac. V5 native pipeline returned local ID6 and the independent reader matched its exact Unicode text and server ID in real Mac history. See separate trial evidence; no direct SQL insertion or historic backfill."
+  ],
+  "abi": {
+    "taskCtor": {
+      "result": "pointer",
+      "args": [
+        "pointer"
+      ],
+      "labels": [
+        "storage"
+      ]
+    },
+    "taskDtor": {
+      "result": "pointer",
+      "args": [
+        "pointer"
+      ],
+      "labels": [
+        "storage"
+      ]
+    },
+    "startTask": {
+      "result": "bool",
+      "args": [
+        "pointer"
+      ],
+      "labels": [
+        "Task"
+      ]
+    },
+    "req2buf": {
+      "result": "bool",
+      "args": [
+        "pointer",
+        "uint32",
+        "pointer",
+        "pointer",
+        "pointer",
+        "pointer",
+        "pointer",
+        "int",
+        "pointer",
+        "uint16",
+        "pointer"
+      ],
+      "labels": [
+        "this",
+        "taskid",
+        "usercontext",
+        "useridString",
+        "outAutoBuffer",
+        "extendAutoBuffer",
+        "errorRef",
+        "channel",
+        "hostString",
+        "clientSequence",
+        "Task"
+      ]
+    },
+    "buf2resp": {
+      "result": "int",
+      "args": [
+        "pointer",
+        "uint32",
+        "pointer",
+        "pointer",
+        "pointer",
+        "pointer",
+        "pointer",
+        "pointer",
+        "int",
+        "pointer",
+        "pointer",
+        "pointer"
+      ],
+      "labels": [
+        "this",
+        "taskid",
+        "usercontext",
+        "useridString",
+        "inAutoBuffer",
+        "extendAutoBuffer",
+        "errorRef",
+        "flagsRef",
+        "channel",
+        "serverSequenceRef",
+        "Task",
+        "extraInfoMap"
+      ]
+    },
+    "onTaskEnd": {
+      "result": "int",
+      "args": [
+        "pointer",
+        "uint32",
+        "pointer",
+        "pointer",
+        "int",
+        "int",
+        "pointer",
+        "pointer"
+      ],
+      "labels": [
+        "this",
+        "taskid",
+        "usercontext",
+        "useridString",
+        "errorType",
+        "errorCode",
+        "ConnectProfile",
+        "Task"
+      ]
+    },
+    "autoBufferWrite": {
+      "result": "void",
+      "args": [
+        "pointer",
+        "pointer",
+        "pointer",
+        "ulong"
+      ],
+      "labels": [
+        "AutoBuffer",
+        "offsetReference",
+        "data",
+        "length"
+      ]
+    },
+    "stringAssign": {
+      "result": "pointer",
+      "args": [
+        "pointer",
+        "pointer"
+      ],
+      "labels": [
+        "string",
+        "charData"
+      ]
+    },
+    "wrapperEnvelopeCtor": {
+      "result": "pointer",
+      "args": [
+        "pointer"
+      ],
+      "labels": [
+        "storage"
+      ]
+    },
+    "wrapperEnvelopeDtor": {
+      "result": "void",
+      "args": [
+        "pointer"
+      ],
+      "labels": [
+        "envelope"
+      ]
+    },
+    "wrapperSerializeToString": {
+      "result": "bool",
+      "args": [
+        "pointer",
+        "pointer"
+      ],
+      "labels": [
+        "message",
+        "stringOutput"
+      ]
+    },
+    "wrapperStringAssignBytes": {
+      "result": "pointer",
+      "args": [
+        "pointer",
+        "pointer",
+        "ulong"
+      ],
+      "labels": [
+        "string",
+        "byteData",
+        "length"
+      ]
+    },
+    "wrapperAutoBufferAppend": {
+      "result": "void",
+      "args": [
+        "pointer",
+        "pointer",
+        "ulong"
+      ],
+      "labels": [
+        "AutoBuffer",
+        "data",
+        "length"
+      ]
+    },
+    "wrapperAppSessionGetter": {
+      "result": "pointer",
+      "args": [],
+      "labels": []
+    },
+    "wrapperAppOnTaskEnd": {
+      "result": "int",
+      "args": [
+        "pointer",
+        "uint32",
+        "pointer",
+        "pointer",
+        "int",
+        "int",
+        "pointer",
+        "pointer"
+      ],
+      "labels": [
+        "this",
+        "taskid",
+        "usercontext",
+        "useridString",
+        "errorType",
+        "errorCode",
+        "CgiProfile",
+        "responseEnvelopeAutoBuffer"
+      ]
+    },
+    "wrapperEnvelopeIdentityGetter": {
+      "result": "uint64",
+      "args": [
+        "pointer"
+      ]
+    }
+  },
+  "request_envelope": {
+    "size": 72,
+    "flags_offset": 68,
+    "flags": "bit(field_number-1)",
+    "fields": [
+      {
+        "number": 1,
+        "offset": 8,
+        "wire": "varint64",
+        "type": "uint64",
+        "app_value": "session vtable+0x20 return; semantic identity unknown"
+      },
+      {
+        "number": 2,
+        "offset": 16,
+        "wire": "bytes",
+        "type": "std::string*",
+        "app_value": "raw CGI protobuf"
+      },
+      {
+        "number": 3,
+        "offset": 24,
+        "wire": "varint32_signed",
+        "type": "int32",
+        "app_value": 0
+      },
+      {
+        "number": 4,
+        "offset": 40,
+        "wire": "varint",
+        "type": "bool",
+        "app_value": false
+      },
+      {
+        "number": 5,
+        "offset": 41,
+        "wire": "varint",
+        "type": "bool",
+        "app_value": "not set in observed app preparation"
+      },
+      {
+        "number": 6,
+        "offset": 28,
+        "wire": "varint",
+        "type": "uint32",
+        "app_value": "not set in observed app preparation"
+      },
+      {
+        "number": 7,
+        "offset": 32,
+        "wire": "bytes",
+        "type": "std::string*",
+        "app_value": "optional request-specific decrypt key; do not dump or persist"
+      },
+      {
+        "number": 8,
+        "offset": 42,
+        "wire": "varint",
+        "type": "bool",
+        "app_value": "true for static special-auth set; excludes522"
+      },
+      {
+        "number": 9,
+        "offset": 43,
+        "wire": "varint",
+        "type": "bool",
+        "app_value": "true when dynamic auth predicate returns true"
+      },
+      {
+        "number": 10,
+        "offset": 48,
+        "wire": "embedded_message",
+        "type": "pointer",
+        "app_value": "special-auth metadata only when field8 true"
+      },
+      {
+        "number": 11,
+        "offset": 56,
+        "wire": "embedded_message",
+        "type": "pointer",
+        "app_value": "dynamic-auth metadata only when field9 true"
+      },
+      {
+        "number": 12,
+        "offset": 44,
+        "wire": "varint",
+        "type": "bool",
+        "app_value": "not set in observed app preparation"
+      },
+      {
+        "number": 13,
+        "offset": 45,
+        "wire": "varint",
+        "type": "bool",
+        "app_value": "raw data bypass flag per account_core log; not set by ordinary app preparation"
+      }
+    ]
+  },
+  "response_envelope": {
+    "size": 48,
+    "flags_offset": 44,
+    "fields": [
+      {
+        "number": 1,
+        "offset": 8,
+        "wire": "varint64",
+        "app_value": "Task+0x60 (cmdid copied to64-bit)"
+      },
+      {
+        "number": 2,
+        "offset": 16,
+        "wire": "bytes",
+        "app_value": "unpacked CGI response bytes"
+      },
+      {
+        "number": 3,
+        "offset": 24,
+        "wire": "bytes",
+        "app_value": "auxiliary native response buffer"
+      },
+      {
+        "number": 4,
+        "offset": 32,
+        "wire": "varint32_signed",
+        "app_value": "unpack metadata; semantic unconfirmed"
+      },
+      {
+        "number": 5,
+        "offset": 36,
+        "wire": "varint32_signed",
+        "app_value": "decode error code on failure"
+      }
+    ]
+  },
+  "version": "4.1.15",
+  "build": "270135",
+  "architecture": "arm64",
+  "code_sha256": "7b93667d03d062671f8929e0a0c71870d4a9ed090f1ede41f1fb0a19ca8f2ffd",
+  "profile_kind": "prepared-task-research-v1",
+  "sending_permitted": false,
+  "send_framing_verified": false,
+  "evidence_note": "Static exact-build analysis plus passive observations and isolated live trials. V2 native framing produced a correlated per-item server acceptance; automated recipient delivery and outgoing-history reconciliation remain unverified. Packaged sending stays disabled.",
+  "text_protocol_semantics": {
+    "request_client_id": "nonzero uint32 field5; native writer0x465d024 and text handler0x3107b0c; v2 used32bits",
+    "response_item_result": "signed int32 field1; zero is success in native text handler0x3108780; explicit zero observed in isolated v2",
+    "response_server_message_id": "uint64 field8; nonzero observed in isolated v2",
+    "response_client_id_correlation": "field4 matched the exact request client ID in isolated v2 diagnostic",
+    "response_recipient_correlation": "field2 nested WxString matched filehelper in isolated v2 diagnostic",
+    "response_timestamp_correlation": "field5 matched the request timestamp in isolated v2 diagnostic",
+    "server_acceptance_observed": true,
+    "delivery_verified": false,
+    "outgoing_history_reconciled": false
+  },
+  "validation_evidence": {
+    "date": "2026-10-26",
+    "scope": "Isolated prepared app copy and exact WeChat4.1.15 build270135 arm64; source app unmodified by this profile metadata update.",
+    "live_diagnostic_artifact": "wechat-build/research/diagnostic-v2-2026-10-26.json",
+    "live_diagnostic_sha256": "5cbf79774e245c6409bf26aec9b2f21ce034ab21542f76c2327be847fd4d4f73",
+    "matched_starts": 1,
+    "matched_ends": 1,
+    "native_errors_zero": true,
+    "global_return_zero": true,
+    "item_return_zero": true,
+    "recipient_client_id_timestamp_correlated": true,
+    "nonzero_server_message_id": true,
+    "recipient_delivery_verified": false,
+    "outgoing_history_reconciliation_verified": false,
+    "static_protocol_evidence": "wechat-build/native-probe/text-protocol-semantics.json",
+    "static_post_response_evidence": "wechat-build/native-probe/text-post-response-findings.json",
+    "release_status": "disabled; isolated server acceptance does not complete end-to-end validation"
+  },
+  "latest_runtime_evidence": {
+    "date": "2026-10-26",
+    "trial": "v3 Unicode File Transfer Assistant",
+    "phone_delivery": "confirmed by user",
+    "mac_history": "absent; reconciliation not implemented",
+    "v4_outbox": "exact text and correlated server acknowledgment verified",
+    "packaged_profile": "disabled; local deployment uses separately reviewed private profile"
+  },
+  "native_pipeline": {
+    "enabled": false,
+    "library_sha256": "38b22a9103c7367e7998310bdec8893796c30b36cfd475dcdf5e5e28b6707039",
+    "functions": {
+      "coroutineCreate": {
+        "offset": "0x667378c",
+        "first16bytes": "ff4301d1f44f03a9fd7b04a9fd030191"
+      },
+      "coroutineSchedule": {
+        "offset": "0x66738d4",
+        "first16bytes": "ff4301d1f44f03a9fd7b04a9fd030191"
+      },
+      "coroutineRunner": {
+        "offset": "0x6677e1c",
+        "first16bytes": "ff0306d1fc6f13a9f85f14a9f65715a9"
+      },
+      "coroutineBodyEntry": {
+        "offset": "0x6678aa0",
+        "first16bytes": "ff4305d1f85f11a9f65712a9f44f13a9"
+      },
+      "coroutineCurrent": {
+        "offset": "0x6673848",
+        "first16bytes": "f44fbea9fd7b01a9fd430091f30308aa"
+      },
+      "nativeSharedRelease": {
+        "offset": "0x129f68",
+        "first16bytes": "f44fbea9fd7b01a9fd430091130440f9"
+      },
+      "accountRootGet": {
+        "offset": "0x466aca8",
+        "first16bytes": "ffc300d1f44f01a9fd7b02a9fd830091"
+      },
+      "accountDomainGet": {
+        "offset": "0x1205740",
+        "first16bytes": "0aa442a90a2500a9890000b428210091"
+      },
+      "messageServiceGet": {
+        "offset": "0x268f370",
+        "first16bytes": "ffc301d1f44f05a9fd7b06a9fd830191"
+      },
+      "sessionGet": {
+        "offset": "0x4669774",
+        "first16bytes": "a8ef0290009d47f9c0035fd6ffc300d1"
+      },
+      "executorManagerGet": {
+        "offset": "0x466ad74",
+        "first16bytes": "0a4841f9094c41f90a2500a9890000b4"
+      },
+      "executorEnqueue": {
+        "offset": "0x66617e4",
+        "first16bytes": "ff0302d1f65705a9f44f06a9fd7b07a9"
+      },
+      "executorManagerStop": {
+        "offset": "0x453e904",
+        "first16bytes": "ff4304d1f44f0fa9fd7b10a9fd030491"
+      },
+      "executorManagerDestroy": {
+        "offset": "0x453bb64",
+        "first16bytes": "f44fbea9fd7b01a9fd430091f30300aa"
+      },
+      "executorOwnerGet": {
+        "offset": "0x466ad74",
+        "first16bytes": "0a4841f9094c41f90a2500a9890000b4"
+      },
+      "resultDestroy": {
+        "offset": "0x257824",
+        "first16bytes": "f44fbea9fd7b01a9fd430091131440f9"
+      },
+      "requestFactory": {
+        "offset": "0x77bdd0",
+        "first16bytes": "f44fbea9fd7b01a9fd430091f40308aa"
+      },
+      "stringAssign": {
+        "offset": "0x713f808",
+        "first16bytes": "b04f01f0103642f900021fd6b04f01f0"
+      },
+      "sendService": {
+        "offset": "0x317df64",
+        "first16bytes": "ff4302d1fa6704a9f85f05a9f65706a9"
+      },
+      "identityGet": {
+        "offset": "0x4670584",
+        "first16bytes": "ff4301d1f65702a9f44f03a9fd7b04a9"
+      }
+    },
+    "completion": "Native service returned a matching local message ID; archive and device observations remain separate evidence.",
+    "validation": {
+      "coroutine_and_retained_service_smoke": "passed",
+      "manual_request_comparison": "matched",
+      "v5_local_history": "independently_observed",
+      "v5_visible_device_confirmation": "user_confirmed_on_both",
+      "duplicate_replay": "no_additional_send"
+    }
+  }
+}

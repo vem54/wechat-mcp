@@ -1,0 +1,11 @@
+# Retain all default detectors. This exact public ARM64 instruction signature is
+# part of the WeChat compatibility guard, not an account/authentication secret.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Exact public machine-code signature in the disabled build profile"
+condition = "AND"
+paths = ['''sender/src/wechat_sender/profiles/wechat-4\.1\.15-270135-arm64\.json$''']
+regexTarget = "line"
+regexes = ['''^\s*"wrapperDynamicAuthPredicate": "ff8301d1f65703a9f44f04a9fd7b05a9",?\s*$''']
